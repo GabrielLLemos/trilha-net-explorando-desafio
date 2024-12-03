@@ -3,23 +3,23 @@ using DesafioProjetoHospedagem.Models;
 
 Console.OutputEncoding = Encoding.UTF8;
 
-// Cria os modelos de hóspedes e cadastra na lista de hóspedes
-List<Pessoa> hospedes = new List<Pessoa>();
 
-Pessoa p1 = new Pessoa(nome: "Hóspede 1");
-Pessoa p2 = new Pessoa(nome: "Hóspede 2");
-
-hospedes.Add(p1);
-hospedes.Add(p2);
-
-// Cria a suíte
 Suite suite = new Suite(tipoSuite: "Premium", capacidade: 2, valorDiaria: 30);
+Reserva reserva = new Reserva();
 
-// Cria uma nova reserva, passando a suíte e os hóspedes
-Reserva reserva = new Reserva(diasReservados: 5);
+Console.WriteLine("Dados para reserva:\n");
+
+Console.WriteLine("Entre com a quantidade de hóspedes");
+int quantidadeDeHospedes = Convert.ToInt32(Console.ReadLine());
+
 reserva.CadastrarSuite(suite);
-reserva.CadastrarHospedes(hospedes);
+reserva.CadastrarHospedes(quantidadeDeHospedes);
 
-// Exibe a quantidade de hóspedes e o valor da diária
+Console.WriteLine("Quantidade de dias reservados:");
+int dias = Convert.ToInt32(Console.ReadLine());
+reserva.DiasReservados = dias;
+
+Console.WriteLine("Informações da reserva:\n");
+
 Console.WriteLine($"Hóspedes: {reserva.ObterQuantidadeHospedes()}");
-Console.WriteLine($"Valor diária: {reserva.CalcularValorDiaria()}");
+Console.WriteLine($"Total: {reserva.CalcularValorDiaria()}");
