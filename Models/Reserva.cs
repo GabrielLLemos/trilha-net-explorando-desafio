@@ -15,7 +15,7 @@ namespace DesafioProjetoHospedagem.Models
 
         public void CadastrarHospedes(int quantidadeDeHospedes)
         {
-            if (Suite.Capacidade >= quantidadeDeHospedes)
+            if (Suite.Capacidade >= quantidadeDeHospedes && quantidadeDeHospedes > 0)
             {
                 List<Pessoa> hospedes = new List<Pessoa>();
 
@@ -25,6 +25,9 @@ namespace DesafioProjetoHospedagem.Models
                     hospedes.Add(new Pessoa(nome: $"{nomeDoHospede}"));
                 }   
                 Hospedes = hospedes;
+            }
+            if(quantidadeDeHospedes <= 0){
+                throw new Exception("Quantidade de hóspedes deve ser maior que zero!");
             }
             else
             {
